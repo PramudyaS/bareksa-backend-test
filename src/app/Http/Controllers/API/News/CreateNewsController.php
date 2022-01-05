@@ -18,7 +18,7 @@ class CreateNewsController extends Controller
     public function __invoke(NewsRequest $request,CreateNewsAction $action)
     {
         return response()->json([
-            'message'   => 'Success Create News',
+            'message'   => 'Success create new news',
             'data'      => $action->execute($request)
         ],201);
     }

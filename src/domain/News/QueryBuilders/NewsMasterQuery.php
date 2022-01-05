@@ -11,7 +11,7 @@ class NewsMasterQuery
     protected  $news;
     protected  $request;
 
-    public function __construct(Request  $request)
+    public function __construct(?Request  $request = null)
     {
         $builder = News::select('*');
 
@@ -25,6 +25,11 @@ class NewsMasterQuery
     public function all()
     {
         return $this->news->get();
+    }
+
+    public function findOrFail(int $id)
+    {
+        return $this->news->findOrFail($id);
     }
 
     public function allowFilterByStatus()
