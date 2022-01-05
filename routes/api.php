@@ -28,7 +28,10 @@ Route::group(['prefix'=>'news'],function(){
    Route::delete('{id}',API\News\DeleteNewsController::class);
 });
 
-Route::get('/',function(){
-    $p = Redis::incr('p');
-    return $p;
+Route::group(['prefix'=>'tags'],function(){
+   Route::get('/',API\Tag\GetTagController::class);
+   Route::post('store',API\Tag\CreateTagController::class);
+   Route::get('{id}',API\Tag\ShowTagController::class);
+   Route::put('{id}',API\Tag\UpdateTagController::class);
+   Route::delete('{id}',API\Tag\DeleteTagController::class);
 });
