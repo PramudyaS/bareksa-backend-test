@@ -10,6 +10,8 @@ class News extends Model
 {
     use HasFactory;
 
+    protected  $guarded = ['id'];
+
     public function news_tag()
     {
         return $this->hasMany(NewsTag::class);

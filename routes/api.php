@@ -19,7 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['prefix'=>'news'],function(){
+Route::group(['prefix'=>'news','as'=>'news.'],function(){
    Route::get('/',API\News\GetNewsController::class)->name('index');
    Route::post('store',API\News\CreateNewsController::class)->name('store');
    Route::get('{id}',API\News\ShowNewsController::class)->name('show');

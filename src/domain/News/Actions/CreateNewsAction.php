@@ -2,6 +2,7 @@
 
 namespace Domain\News\Actions;
 
+use Domain\News\Mapper\NewsMapper;
 use Domain\News\Models\News;
 use Domain\News\Requests\NewsRequest;
 use Domain\Tag\Actions\CreateTagAction;
@@ -53,6 +54,6 @@ class CreateNewsAction
 
         Cache::forget('topic_news');
 
-        return $news;
+        return (new NewsMapper())->parse($news,$request->tags,$request->topic);
     }
 }
