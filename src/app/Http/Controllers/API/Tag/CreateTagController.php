@@ -18,8 +18,8 @@ class CreateTagController extends Controller
     public function __invoke(TagRequest $request,CreateTagAction $action)
     {
         return response()->json([
-            'message'   => 'Succes create new tag',
+            'message'   => 'Success create new tag',
             'data'      => $action->execute($request)
-        ]);
+        ],201);
     }
 }

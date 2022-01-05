@@ -18,7 +18,7 @@ class DeleteTagController extends Controller
     {
         $action->execute($id);
         return response()->json([
-            'message'   => 'Succes delete tag',
+            'message'   => 'Success delete tag',
         ],204);
     }
 }

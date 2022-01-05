@@ -28,10 +28,10 @@ Route::group(['prefix'=>'news'],function(){
    Route::delete('{id}',API\News\DeleteNewsController::class);
 });
 
-Route::group(['prefix'=>'tags'],function(){
-   Route::get('/',API\Tag\GetTagController::class);
-   Route::post('store',API\Tag\CreateTagController::class);
-   Route::get('{id}',API\Tag\ShowTagController::class);
-   Route::put('{id}',API\Tag\UpdateTagController::class);
-   Route::delete('{id}',API\Tag\DeleteTagController::class);
+Route::group(['prefix'=>'tags','as'=>'tags.'],function(){
+   Route::get('/',API\Tag\GetTagController::class)->name('index');
+   Route::post('store',API\Tag\CreateTagController::class)->name('store');
+   Route::get('{id}',API\Tag\ShowTagController::class)->name('show');
+   Route::put('{id}',API\Tag\UpdateTagController::class)->name('update');
+   Route::delete('{id}',API\Tag\DeleteTagController::class)->name('delete');
 });
