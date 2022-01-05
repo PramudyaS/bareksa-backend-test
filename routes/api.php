@@ -3,7 +3,6 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API;
-use Illuminate\Support\Facades\Redis;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,11 +20,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::group(['prefix'=>'news'],function(){
-   Route::get('/',API\News\GetNewsController::class);
-   Route::post('store',API\News\CreateNewsController::class);
-   Route::get('{id}',API\News\ShowNewsController::class);
-   Route::put('{id}',API\News\UpdateNewsController::class);
-   Route::delete('{id}',API\News\DeleteNewsController::class);
+   Route::get('/',API\News\GetNewsController::class)->name('index');
+   Route::post('store',API\News\CreateNewsController::class)->name('store');
+   Route::get('{id}',API\News\ShowNewsController::class)->name('show');
+   Route::put('{id}',API\News\UpdateNewsController::class)->name('update');
+   Route::delete('{id}',API\News\DeleteNewsController::class)->name('delete');
 });
 
 Route::group(['prefix'=>'tags','as'=>'tags.'],function(){
@@ -35,3 +34,4 @@ Route::group(['prefix'=>'tags','as'=>'tags.'],function(){
    Route::put('{id}',API\Tag\UpdateTagController::class)->name('update');
    Route::delete('{id}',API\Tag\DeleteTagController::class)->name('delete');
 });
+

@@ -3,7 +3,9 @@
 namespace Domain\News\Requests;
 
 use Domain\News\States\NewsState;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Validation\Rule;
 
 class NewsRequest extends FormRequest
@@ -28,7 +30,16 @@ class NewsRequest extends FormRequest
         return [
             'title'         => ['required'],
             'description'   => ['required'],
-            'status'        => ['required',Rule::in(NewsState::getValues())]
+            'status'        => ['required',Rule::in(NewsState::getValues())],
+            'topic'         => ['required']
         ];
+    }
+
+    public function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'message'   => 'Validation errors',
+            'data'      => $validator->errors()
+        ],422));
     }
 }
